@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Scheduling Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Process Scheduling Simulator</h1>
+        <p>Visualize and compare different CPU scheduling algorithms</p>
+    </header>
+    
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <h3>Algorithm Settings</h3>
+                <div class="form-group">
+                    <label for="algorithm">Scheduling Algorithm</label>
+                    <select id="algorithm">
+                        <option value="fcfs">First Come First Served (FCFS)</option>
+                        <option value="sjf">Shortest Job First (SJF)</option>
+                        <option value="srtf">Shortest Remaining Time First (SRTF)</option>
+                        <option value="rr">Round Robin (RR)</option>
+                        <option value="priority">Priority Scheduling</option>
+                    </select>
+                </div>
+                <div class="form-group" id="quantum-group" style="display: none;">
+                    <label for="time-quantum">Time Quantum</label>
+                    <input type="number" id="time-quantum" min="1" value="2">
+                </div>
+                <button id="run-simulation">Run Simulation</button>
+            </div>
+            
+            <div class="control-group">
+                <h3>Process Management</h3>
+                <div class="form-group">
+                    <label for="arrival-time">Arrival Time</label>
+                    <input type="number" id="arrival-time" min="0" value="0">
+                </div>
+                <div class="form-group">
+                    <label for="burst-time">Burst Time</label>
+                    <input type="number" id="burst-time" min="1" value="5">
+                </div>
+                <div class="form-group" id="priority-group">
+                    <label for="priority">Priority (lower number = higher priority)</label>
+                    <input type="number" id="priority" min="1" value="1">
+                </div>
+                <button id="add-process">Add Process</button>
+                <button id="clear-processes" class="danger">Clear All Processes</button>
+            </div>
+        </div>
+        
+        <div class="process-table">
+            <h3>Process List</h3>
+            <table id="processes">
+                <thead>
+                    <tr>
+                        <th>Process ID</th>
+                        <th>Arrival Time</th>
+                        <th>Burst Time</th>
+                        <th>Priority</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="process-body">
+                    <!-- Processes will be added here -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="results" id="results" style="display: none;">
+            <h3>Simulation Results</h3>
+            
+            <div class="chart-container">
+                <h4>Gantt Chart</h4>
+                <div id="gantt-chart" class="gantt-chart">
+                    <!-- Gantt chart will be rendered here -->
+                </div>
+            </div>
+            
+            <div class="metrics">
+                <div class="metric-card">
+                    <div class="metric-title">Average Turnaround Time</div>
+                    <div class="metric-value" id="avg-turnaround">-</div>
+                    <div class="metric-description">The average time from arrival to completion</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Average Waiting Time</div>
+                    <div class="metric-value" id="avg-waiting">-</div>
+                    <div class="metric-description">The average time spent waiting for CPU</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">CPU Utilization</div>
+                    <div class="metric-value" id="cpu-utilization">-</div>
+                    <div class="metric-description">Percentage of time CPU was busy</div>
+                </div>
+            </div>
+            
+            <div class="process-details">
+                <h4>Process Details</h4>
+                <table id="process-details">
+                    <thead>
+                        <tr>
+                            <th>Process ID</th>
+                            <th>Arrival Time</th>
+                            <th>Burst Time</th>
+                            <th>Completion Time</th>
+                            <th>Turnaround Time</th>
+                            <th>Waiting Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="details-body">
+                        <!-- Process details will be added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+    
